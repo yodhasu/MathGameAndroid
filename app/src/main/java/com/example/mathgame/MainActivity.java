@@ -1,6 +1,7 @@
 package com.example.mathgame;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,11 +27,13 @@ public class MainActivity extends AppCompatActivity {
     ImageView playerPng, enemyPng;
     Button ans1, ans2, ans3;
 
-    int playerHPValue = 100;
-    int enemyHPValue = 1000;
+    int playerHPValue;
+    int enemyHPValue;
 
     String correctExpression = "";
     int correctResult = 0;
+
+    Random rand = new Random(); // Use one global Random
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +56,26 @@ public class MainActivity extends AppCompatActivity {
         ans2 = findViewById(R.id.ans2);
         ans3 = findViewById(R.id.ans3);
 
-        updateHP();
-        generateQuestions();
-
-        // Button actions
+        // Set button listeners
         Button[] buttons = {ans1, ans2, ans3};
         for (Button btn : buttons) {
-            btn.setOnClickListener(v -> handleAnswer(btn.getText().toString()));
+            btn.setOnClickListener(v -> {
+                handleAnswer(btn.getText().toString());
+                // Always generate new question after click
+                if (playerHPValue > 0 && enemyHPValue > 0) {
+                    generateQuestions();
+                }
+            });
         }
+
+        startGame();
+    }
+
+    void startGame() {
+        playerHPValue = 100;
+        enemyHPValue = 1000;
+        updateHP();
+        generateQuestions();
     }
 
     void updateHP() {
@@ -88,25 +103,29 @@ public class MainActivity extends AppCompatActivity {
         updateHP();
 
         if (enemyHPValue == 0) {
-            Toast.makeText(this, "🎉 You Win!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "🎉 You Win! Restarting...", Toast.LENGTH_LONG).show();
+            restartGameAfterDelay();
         } else if (playerHPValue == 0) {
-            Toast.makeText(this, "💀 Game Over!", Toast.LENGTH_LONG).show();
-        } else {
-            generateQuestions();
+            Toast.makeText(this, "💀 Game Over! Restarting...", Toast.LENGTH_LONG).show();
+            restartGameAfterDelay();
         }
     }
 
+    void restartGameAfterDelay() {
+        // Give time for player to read the toast
+        new Handler().postDelayed(this::startGame, 2500);
+    }
+
     void generateQuestions() {
-        Random rand = new Random();
         List<String> expressions = new ArrayList<>();
 
-        correctExpression = buildExpression(rand);
+        correctExpression = buildExpression();
         correctResult = (int) evaluate(correctExpression);
         expressions.add(correctExpression + " = " + correctResult);
 
-        // Generate 2 fake ones
+        // Generate 2 wrong answers
         while (expressions.size() < 3) {
-            String fakeExpr = buildExpression(rand);
+            String fakeExpr = buildExpression();
             int fakeResult = (int) evaluate(fakeExpr);
 
             if (!fakeExpr.equals(correctExpression) && fakeResult != correctResult) {
@@ -120,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         ans3.setText(expressions.get(2));
     }
 
-    String buildExpression(Random rand) {
+    String buildExpression() {
         int[] nums = new int[4];
         String[] ops = new String[3];
         String[] symbols = {"+", "-", "*", "/"};
@@ -131,10 +150,8 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < 3; i++) {
             ops[i] = symbols[rand.nextInt(4)];
-
             if (ops[i].equals("/")) {
-                // Make divisible to avoid decimals
-                nums[i] = nums[i + 1] * (rand.nextInt(3) + 1);
+                nums[i] = nums[i + 1] * (rand.nextInt(3) + 1); // make divisible
             }
         }
 
