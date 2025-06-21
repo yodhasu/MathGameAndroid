@@ -1,6 +1,9 @@
 package com.example.mathgame;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +12,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    // init variable
+    TextView playerHP, enemyHP;
+    ImageView playerPng, enemyPng;
+    Button ans1, ans2, ans3;
+    int playerHPValue = 100;
+    int enemyHPValue = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +30,5 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
-
 
 }

@@ -6,99 +6,148 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#303238"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
+
+    <!-- Title -->
+
+    <!-- Player HP -->
+
+    <!-- Enemy HP -->
+
+    <!-- Player Image -->
+
+    <!-- Enemy Image -->
+
+    <!-- Subtitle -->
+
+    <TextView
+        android:id="@+id/tittleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/pixelify_sans"
+        android:text="Math RPG"
+        android:textAlignment="center"
+        android:textColor="#FFFCFC"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_margin="32dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/enemyPng"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        tools:layout_editor_absoluteX="234dp"
-        tools:layout_editor_absoluteY="208dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Enemy"
+        app:layout_constraintEnd_margin="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/playerPng"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/enemyHP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="72dp"
+        android:fontFamily="@font/pixelify_sans"
+        android:text="HP"
+        android:textColor="#FFFCFC"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_margin="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/playerHP" />
 
     <ImageView
         android:id="@+id/playerPng"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="208dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="Player"
+        app:layout_constraintStart_margin="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/playerHP"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tittleText"
-        android:layout_width="248dp"
-        android:layout_height="62dp"
+        android:id="@+id/playerHP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="@font/pixelify_sans"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="#FFFCFC"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="53dp" />
-
-    <TextView
-        android:id="@+id/textonly"
-        android:layout_width="248dp"
-        android:layout_height="62dp"
-        android:fontFamily="@font/pixelify_sans"
-        android:text="Choose the correct answer!"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:text="HP"
         android:textColor="#FFFCFC"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="386dp" />
-
-    <TextView
-        android:id="@+id/playerHP"
-        android:layout_width="99dp"
-        android:layout_height="43dp"
-        android:fontFamily="@font/pixelify_sans"
-        android:text="HP"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="#FFFCFC"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="62dp"
-        tools:layout_editor_absoluteY="157dp" />
-
-    <TextView
-        android:id="@+id/enemyHP"
-        android:layout_width="99dp"
-        android:layout_height="43dp"
-        android:fontFamily="@font/pixelify_sans"
-        android:text="HP"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="#FFFCFC"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="157dp" />
-
-    <Button
-        android:id="@+id/ans1"
-        android:layout_width="238dp"
-        android:layout_height="60dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="468dp" />
+        app:layout_constraintStart_margin="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_margin="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tittleText" />
 
     <Button
         android:id="@+id/ans2"
-        android:layout_width="238dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginTop="4dp"
         android:text="Button"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="547dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/ans1"
+        app:layout_constraintWidth_percent="0.65" />
+
+    <TextView
+        android:id="@+id/textonly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:fontFamily="@font/pixelify_sans"
+        android:text="Choose the correct answer!"
+        android:textColor="#FFFCFC"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_margin="24dp"
+        app:layout_constraintTop_toBottomOf="@id/playerPng" />
+
+    <Button
+        android:id="@+id/ans1"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_margin="24dp"
+        app:layout_constraintTop_toBottomOf="@id/textonly"
+        app:layout_constraintWidth_percent="0.65" />
 
     <Button
         android:id="@+id/ans3"
-        android:layout_width="238dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginTop="4dp"
         android:text="Button"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="625dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/ans2"
+        app:layout_constraintWidth_percent="0.65" />
+
+    <!-- Answer Button 1 -->
+
+    <!-- Answer Button 2 -->
+
+    <!-- Answer Button 3 -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
