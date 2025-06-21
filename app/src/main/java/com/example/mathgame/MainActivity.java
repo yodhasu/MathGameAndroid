@@ -89,13 +89,25 @@ public class MainActivity extends AppCompatActivity {
         int selectedResult = Integer.parseInt(parts[1].trim());
 
         if (expr.equals(correctExpression)) {
-            enemyHPValue -= correctResult;
-            Toast.makeText(this, "Correct! Enemy took " + correctResult + " damage!", Toast.LENGTH_SHORT).show();
+            if (correctResult >= 0) {
+                enemyHPValue -= correctResult;
+                Toast.makeText(this, "Correct! Enemy took " + correctResult + " damage!", Toast.LENGTH_SHORT).show();
+            } else {
+                int healed = Math.abs(correctResult);
+                playerHPValue = Math.min(playerHPValue + healed, 100);
+                Toast.makeText(this, "Correct! You healed " + healed + " HP!", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            int damage = selectedResult;
-            playerHPValue -= damage;
-            Toast.makeText(this, "Wrong! You took " + damage + " damage!", Toast.LENGTH_SHORT).show();
+            if (selectedResult >= 0) {
+                playerHPValue -= selectedResult;
+                Toast.makeText(this, "Wrong! You took " + selectedResult + " damage!", Toast.LENGTH_SHORT).show();
+            } else {
+                int healed = Math.abs(selectedResult);
+                enemyHPValue = Math.min(enemyHPValue + healed, 1000);
+                Toast.makeText(this, "Wrong! Enemy healed " + healed + " HP!", Toast.LENGTH_SHORT).show();
+            }
         }
+
 
         // Clamp HP
         playerHPValue = Math.max(playerHPValue, 0);
